@@ -1,0 +1,68 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Table With Action</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.8/datatables.min.css" rel="stylesheet">
+   <!-- <link rel="stylesheet" type="text/css" href="../styles/list-course.css">-->
+</head>
+
+<body>
+<br>
+<br>
+
+    <div class="container">
+         <a th:href="@{/course}"> <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add Course  </button> </a>
+        <br>
+        <h1 th:text="${totalcourses}"></h1>
+        <br>
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered" id="employee-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Duration</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr th:each="c:${course}">
+                  <th scope="row" th:text="${c.id}" />
+                  <td th:text="${c.name}" />
+                  <td th:text="${c.description}" />
+                  <td th:text="${c.category}" />
+                  <td th:text="${c.duration}" />
+                  <td>
+                    <!-- <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button> -->
+                    <a href="#"> <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                  <a href="#"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
+<script>
+    $(function () {
+        $("#employee-table").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1]
+            }]
+        });
+    })
+</script>
+
+</body>
+
+</html>

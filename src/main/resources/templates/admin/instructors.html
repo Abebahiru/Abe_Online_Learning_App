@@ -1,0 +1,84 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Instructors</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link href="https://cdn.datatables.net/v/bs4/dt-1.13.8/datatables.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="../styles/list-course.css">-->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+
+<body>
+<!--<nav>
+  <a th:href="@{/admin/home}">Home</a>
+  <a th:href="@{/admin/profile(id=${user.get().getId()})}">Update Profile</a>
+  <a th:href="@{/admin/courses}">Manage Courses</a>
+  <a th:href="@{/admin/instructors}">Manage Instructors</a>
+  <a th:href="@{/admin/students}">View Students</a>
+  <a th:href="@{/logout}"> Logout</a>
+</nav>-->
+
+<div th:replace="(~{common/admin-nav.html})" ></div>
+
+<div th:if="${param.updated}">
+  <div class=" auto-close alert alert-success" style="text-align: center"> <b> Updated Successfully. </b></div>
+</div>
+<div th:if="${param.deleted}">
+  <div class=" auto-close alert alert-danger" style="text-align: center"> <b> Instructor Deleted. </b></div>
+</div>
+
+<div class="container">
+  <br>
+  <br>
+  <h1 style="text-align: center">Instructors</h1>
+  <a th:href="@{/admin/addInstructor}"> <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add Instructor  </button> </a>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered" id="employee-table">
+        <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Course</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i:${instructor}">
+          <td th:text="${i.firstName}" />
+          <td th:text="${i.lastName}" />
+          <td th:text="${i.email}" />
+          <td th:text="${i.phoneNumber}" />
+          <td th:text="${i.courses[0].name}"/>
+
+          <td>
+            <!-- <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button> -->
+<!--            <a th:href="@{/admin/edit-course(id=${c.id})}"> <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>-->
+             <a th:href="@{/admin/deleteInstructor(id=${i.id})}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
+<script>
+  $(function () {
+    $("#employee-table").DataTable();
+  })
+</script>
+
+<script type="text/javascript" th:src="@{/js/alert_disappear.js}"></script>
+
+</body>
+
+</html>

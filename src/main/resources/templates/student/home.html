@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.8/datatables.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--
+<nav>
+    <a th:href="@{/student/home}">Home</a>
+    <a th:href="@{/student/profile(id=${user.id})}">Update Profile</a>
+    <a th:href="@{/student/courses(student_id=${user.id})}">Other Courses</a>
+    <a th:href="@{/logout}"> Logout</a>
+</nav>
+-->
+<div th:replace="(~{common/student-nav.html})" ></div>
+
+<h1>Student Home</h1>
+<h1> Hello <span th:text="${user.firstName}" ></span> </h1>
+
+<div th:if="${param.updated}">
+    <div class=" auto-close alert alert-success" style="text-align: center"> <b> Updated Successfully. </b></div>
+    <script th:inline="javascript">
+        var newUrl = window.location.href.replace('?updated', '');
+        history.replaceState(null, null, newUrl);
+    </script>
+</div>
+
+<div class="container">
+    <h1 style="text-align: center">My Courses</h1>
+<!--    <a th:href="@{/admin/add-course}"> <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add Course  </button> </a>-->
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered" id="employee-table">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Duration</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c:${user.courses}">
+                    <td th:text="${c.name}" />
+                    <td th:text="${c.description}" />
+                    <td th:text="${c.category}" />
+                    <td th:text="${c.duration}" />
+            <!--        <td>
+                        &lt;!&ndash; <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button> &ndash;&gt;
+                        <a th:href="@{/admin/edit-course(id=${c.id})}"> <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                        &lt;!&ndash; <a th:href="@{/admin/delete-course(id=${c.id})}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>&ndash;&gt;
+                    </td>-->
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
+<script>
+    $(function () {
+        $("#employee-table").DataTable();
+    })
+</script>
+
+<script type="text/javascript" th:src="@{/js/alert_disappear.js}"></script>
+
+</body>
+</html>

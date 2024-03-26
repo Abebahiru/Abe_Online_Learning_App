@@ -1,0 +1,66 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Instructors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.8/datatables.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="../styles/list-course.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+<!--<nav>
+    <a th:href="@{/admin/home}">Home</a>
+    <a th:href="@{/admin/profile(id=${user.get().getId()})}">Update Profile</a>
+    <a th:href="@{/admin/courses}">Manage Courses</a>
+    <a th:href="@{/admin/instructors}">Manage Instructors</a>
+    <a th:href="@{/admin/students}">View Students</a>
+    <a th:href="@{/logout}"> Logout</a>
+</nav>-->
+
+<div th:replace="(~{common/admin-nav.html})" ></div>
+
+<!--<div th:if="${param.updated}">
+    <div class=" auto-close alert alert-success" style="text-align: center"> <b> Updated Successfully. </b></div>
+</div>-->
+<div class="container">
+    <br>
+    <br>
+    <h1 style="text-align: center">Students</h1>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered" id="employee-table">
+                <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="s:${students}">
+                    <td th:text="${s.firstName}" />
+                    <td th:text="${s.lastName}" />
+                    <td th:text="${s.email}" />
+                    <td th:text="${s.phoneNumber}" />
+
+                    <!--<td>
+                      &lt;!&ndash; <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button> &ndash;&gt;
+                      <a th:href="@{/admin/edit-course(id=${c.id})}"> <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                      &lt;!&ndash; <a th:href="@{/admin/delete-course(id=${c.id})}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>&ndash;&gt;
+                    </td>-->
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

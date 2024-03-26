@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  >
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a th:href="@{/instructor/home}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Abe Online Learning App</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:href="@{/instructor/home}" class="nav-item nav-link">Home</a>
+            <a th:href="@{/instructor/profile(id=${user.id})}" class="nav-item nav-link">Update Profile</a>
+            <a th:href="@{/instructor/students(course_id=${user.courses[0].id})}" class="nav-item nav-link">My Students</a>
+            <a th:href="@{/logout}" class="nav-item nav-link"> Logout</a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
